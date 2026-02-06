@@ -21,33 +21,38 @@ export default async function MoviesList({
     else {
         return null
     }
-    const movieElements = Array.isArray(movieList) ? movieList.map((movie:DetailedMovie) => {
+    const moviesWithPoster = Array.isArray(movieList)
+        ? movieList.filter((movie: DetailedMovie) => movie.Poster && movie.Poster !== 'N/A')
+        : [];
+
+    const movieElements = moviesWithPoster.map((movie: DetailedMovie) => {
         const {
             Genre,
             imdbID,
-            imdbRating, 
+            imdbRating,
             Plot,
             Poster,
             Runtime,
             Title,
-        } = movie
+        } = movie;
+
         return (
             <div
                 key={movie.imdbID}
                 className="movie-container"
             >
-                <MovieElement 
-                        Genre={Genre}
-                        imdbID={imdbID}
-                        imdbRating={imdbRating} 
-                        Plot={Plot}
-                        Poster={Poster}
-                        Runtime={Runtime}
-                        Title={Title}
+                <MovieElement
+                    Genre={Genre}
+                    imdbID={imdbID}
+                    imdbRating={imdbRating}
+                    Plot={Plot}
+                    Poster={Poster}
+                    Runtime={Runtime}
+                    Title={Title}
                 />
             </div>
-        )
-    }) : null
+        );
+    });
 
     return (
         <div className='movie-list-container'>
