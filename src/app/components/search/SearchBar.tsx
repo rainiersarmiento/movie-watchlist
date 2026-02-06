@@ -37,6 +37,11 @@ function SearchBar() {
             onChange = {(e) => {
                 setSearchInput(e.target.value)
             }}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' && searchInput) {
+                    handleClick(searchInput);
+                }
+            }}
         />
         <button className="searchbar-button"
             disabled={searchInput ? false : true}
