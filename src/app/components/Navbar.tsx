@@ -7,48 +7,22 @@ import { usePathname } from 'next/navigation';
 
 function Navbar() {
   const { list } = useWatchlistContext();
-  // const searchParams = useSearchParams();
   const pathname = usePathname();
-  let headerTitles = null;
-  const params = new URLSearchParams(list?.map(movieId => ['id', movieId]) || '')
+  const params = new URLSearchParams(list?.map(movieId => ['id', movieId]) || '');
 
-
-  if(pathname === '/watchlist') {
-    headerTitles = (
-      <>
-        <h1>My Watchlist</h1>
-        <Link
-            href='/search'
-            >Search for films &#8594;
-        </Link>
-      </>
-    )
-  } else if (pathname === '/search') {
-    headerTitles = (
-      <>
-        <h1>Find your film</h1>
-        <Link
-          href={`/watchlist?${params}`}
-          >My Watchlist &#8594;
-        </Link>
-      </>
-    )
-  } else {
-    headerTitles = (
-      <>
-        <h1>Find your film</h1>
-        <Link
-          href='/search'
-          >Search for films &#8594;
-        </Link>
-      </>
-    )
-  }
-
+  const pageTitle = pathname === '/watchlist' ? 'My Watchlist' : 'Find your film';
 
   return (
     <nav className="navbar">
-      {headerTitles}
+      <h1>{pageTitle}</h1>
+      <div className="navbar-buttons">
+        <Link href="/search" className="navbar-btn">
+          Search
+        </Link>
+        <Link href={`/watchlist?${params}`} className="navbar-btn">
+          My List
+        </Link>
+      </div>
     </nav>
   )
 }

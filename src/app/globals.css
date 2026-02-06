@@ -50,6 +50,29 @@ a {
   text-decoration: underline #000;
 }
 
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-btn {
+  font-weight: 600;
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  /* border: 2px solid #000; */
+  /* border-radius: 0.25rem; */
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar-btn:hover {
+  /* background: #000; */
+  /* color: #fff; */
+  text-decoration: underline;
+}
+
 .main-content {
   color: #fff;
 }
